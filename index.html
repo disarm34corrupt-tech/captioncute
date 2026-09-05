@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Caption Dreamy ♡</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <div class="floating floating-one">✦</div>
+  <div class="floating floating-two">♡</div>
+  <div class="floating floating-three">✧</div>
+
+  <header class="header">
+    <div>
+      <p class="eyebrow">✦ A LITTLE CAPTION ATELIER</p>
+
+      <h1>
+        Caption
+        <span>Dreamy</span>
+      </h1>
+    </div>
+
+    <p class="intro">
+      Upload a picture, let the little studio read its mood,
+      then turn the moment into words ♡
+    </p>
+  </header>
+
+
+  <main class="container">
+
+    <!-- LEFT -->
+    <section class="card creator">
+
+      <h2>Give me a picture ♡</h2>
+
+      <p class="description">
+        The photo becomes the starting point —
+        not the whole personality.
+      </p>
+
+
+      <!-- UPLOAD -->
+
+      <label class="upload-box" id="uploadBox">
+
+        <input
+          type="file"
+          id="photoInput"
+          accept="image/*"
+        />
+
+        <div id="uploadText">
+
+          <div class="upload-icon">
+            ☁️
+          </div>
+
+          <strong>
+            drop your photo here
+          </strong>
+
+          <span>
+            or tap to browse · JPG / PNG / WEBP
+          </span>
+
+        </div>
+
+        <img
+          id="preview"
+          class="preview"
+          alt="Photo preview"
+        />
+
+      </label>
+
+
+      <!-- STYLE -->
+
+      <div class="section">
+
+        <div class="label">
+          Caption mood
+        </div>
+
+        <div class="style-list">
+
+          <button class="style active" data-style="cute">
+            🎀 Cute
+          </button>
+
+          <button class="style" data-style="dreamy">
+            ☁️ Dreamy
+          </button>
+
+          <button class="style" data-style="classy">
+            🦢 Classy
+          </button>
+
+          <button class="style" data-style="playful">
+            🍒 Playful
+          </button>
+
+          <button class="style" data-style="romantic">
+            💌 Romantic
+          </button>
+
+          <button class="style" data-style="poetic">
+            📖 Poetic
+          </button>
+
+          <button class="style" data-style="storybook">
+            🕯️ Storybook
+          </button>
+
+          <button class="style" data-style="surprise">
+            ✦ Surprise Me
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- LENGTH -->
+
+      <div class="section">
+
+        <div class="label">
+          Caption length
+        </div>
+
+        <div class="length-list">
+
+          <button class="length active" data-length="short">
+            Short
+          </button>
+
+          <button class="length" data-length="medium">
+            Medium
+          </button>
+
+          <button class="length" data-length="long">
+            Long
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTEXT -->
+
+      <div class="section">
+
+        <div class="label">
+          Tiny context
+          <small>(optional)</small>
+        </div>
+
+        <textarea
+          id="context"
+          placeholder="e.g. afternoon coffee with my bestie, first day in Seoul, concert night..."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="generate-button"
+        id="generateButton"
+      >
+        ✦ READ PHOTO & GENERATE ✦
+      </button>
+
+    </section>
+
+
+
+    <!-- RIGHT -->
+
+    <section class="card result">
+
+      <div class="result-header">
+
+        <div>
+          <h2>
+            What the photo whispers
+          </h2>
+
+          <p class="description">
+            visual reading + caption
+          </p>
+        </div>
+
+        <span class="status">
+          demo mode
+        </span>
+
+      </div>
+
+
+      <!-- VISUAL READING -->
+
+      <div class="reading">
+
+        <div>
+          <span>MOOD</span>
+          <strong id="mood">
+            waiting for a photo...
+          </strong>
+        </div>
+
+        <div>
+          <span>SETTING</span>
+          <strong id="setting">
+            —
+          </strong>
+        </div>
+
+        <div>
+          <span>PALETTE</span>
+          <strong id="palette">
+            —
+          </strong>
+        </div>
+
+        <div>
+          <span>ENERGY</span>
+          <strong id="energy">
+            —
+          </strong>
+        </div>
+
+      </div>
+
+
+      <!-- CAPTION -->
+
+      <div class="caption-box">
+
+        <div class="caption-label">
+          YOUR CAPTION ♡
+        </div>
+
+        <p id="caption">
+          Give me a photo and I'll make it sing.
+        </p>
+
+
+        <div class="actions">
+
+          <button id="regenerate">
+            ↻ regenerate
+          </button>
+
+          <button id="copy">
+            ♡ copy
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <p class="studio-note">
+        <b>Studio note:</b>
+        this little atelier is learning your visual language.
+        More persona styles will be added soon. ☁️
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    made with sugar, stardust & too many little hearts ♡
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

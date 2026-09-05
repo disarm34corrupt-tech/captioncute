@@ -1,64 +1,52 @@
 const photoInput = document.getElementById("photoInput");
 const uploadBox = document.getElementById("uploadBox");
-
-const uploadText = document.getElementById("uploadText");
+const uploadEmpty = document.getElementById("uploadEmpty");
+const previewWrap = document.getElementById("previewWrap");
 const preview = document.getElementById("preview");
+const removePhoto = document.getElementById("removePhoto");
 
-const generateButton =
-  document.getElementById("generateButton");
+const generateButton = document.getElementById("generateButton");
+const regenerate = document.getElementById("regenerate");
+const copyCaption = document.getElementById("copyCaption");
 
-const regenerate =
-  document.getElementById("regenerate");
+const caption = document.getElementById("caption");
+const context = document.getElementById("context");
 
-const copyButton =
-  document.getElementById("copy");
-
-const caption =
-  document.getElementById("caption");
-
-const mood =
-  document.getElementById("mood");
-
-const setting =
-  document.getElementById("setting");
-
-const palette =
-  document.getElementById("palette");
-
-const energy =
-  document.getElementById("energy");
-
-
-let selectedStyle = "cute";
-let selectedLength = "short";
-
-let currentPhoto = null;
-
+const readMood = document.getElementById("readMood");
+const readSetting = document.getElementById("readSetting");
+const readPalette = document.getElementById("readPalette");
+const readEnergy = document.getElementById("readEnergy");
 
 
 /* =========================
-   STYLE SELECTOR
+   STATE
 ========================= */
 
-document.querySelectorAll(".style").forEach(button => {
+let selectedStyle = "cute";
+let selectedLength = "short";
+let currentPhoto = null;
+
+
+/* =========================
+   MOOD SELECTOR
+========================= */
+
+document.querySelectorAll(".mood").forEach(button => {
 
   button.addEventListener("click", () => {
 
-    document
-      .querySelectorAll(".style")
-      .forEach(item =>
-        item.classList.remove("active")
-      );
+    document.querySelectorAll(".mood")
+      .forEach(item => {
+        item.classList.remove("active");
+      });
 
     button.classList.add("active");
 
-    selectedStyle =
-      button.dataset.style;
+    selectedStyle = button.dataset.style;
 
   });
 
 });
-
 
 
 /* =========================
@@ -69,21 +57,18 @@ document.querySelectorAll(".length").forEach(button => {
 
   button.addEventListener("click", () => {
 
-    document
-      .querySelectorAll(".length")
-      .forEach(item =>
-        item.classList.remove("active")
-      );
+    document.querySelectorAll(".length")
+      .forEach(item => {
+        item.classList.remove("active");
+      });
 
     button.classList.add("active");
 
-    selectedLength =
-      button.dataset.length;
+    selectedLength = button.dataset.length;
 
   });
 
 });
-
 
 
 /* =========================
@@ -92,8 +77,7 @@ document.querySelectorAll(".length").forEach(button => {
 
 photoInput.addEventListener("change", event => {
 
-  const file =
-    event.target.files[0];
+  const file = event.target.files[0];
 
   if (!file) return;
 
@@ -102,12 +86,11 @@ photoInput.addEventListener("change", event => {
 });
 
 
-
 function showPhoto(file) {
 
   if (!file.type.startsWith("image/")) {
 
-    alert("Please upload an image ♡");
+    alert("Please choose an image ♡");
 
     return;
 
@@ -115,74 +98,95 @@ function showPhoto(file) {
 
   currentPhoto = file;
 
-  const imageURL =
-    URL.createObjectURL(file);
+  const url = URL.createObjectURL(file);
 
-  preview.src = imageURL;
+  preview.src = url;
 
-  preview.classList.add("show");
+  uploadEmpty.style.display = "none";
 
-  uploadText.classList.add("hidden");
+  previewWrap.classList.add("show");
 
   caption.textContent =
-    "Ready when you are. ✦";
+    "photo received. she’s ready for a little magic. ✦";
 
 }
 
+
+/* =========================
+   REMOVE PHOTO
+========================= */
+
+removePhoto.addEventListener("click", event => {
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  currentPhoto = null;
+
+  photoInput.value = "";
+
+  preview.src = "";
+
+  uploadEmpty.style.display = "";
+
+  previewWrap.classList.remove("show");
+
+  resetReading();
+
+  caption.textContent =
+    "upload a photo and let the little atelier begin.";
+
+});
 
 
 /* =========================
    DRAG & DROP
 ========================= */
 
-uploadBox.addEventListener(
-  "dragover",
-  event => {
+uploadBox.addEventListener("dragover", event => {
 
-    event.preventDefault();
+  event.preventDefault();
 
-    uploadBox.style.transform =
-      "translateY(-2px)";
+  uploadBox.style.transform =
+    "translateY(-2px)";
 
+});
+
+
+uploadBox.addEventListener("dragleave", () => {
+
+  uploadBox.style.transform = "";
+
+});
+
+
+uploadBox.addEventListener("drop", event => {
+
+  event.preventDefault();
+
+  uploadBox.style.transform = "";
+
+  const file = event.dataTransfer.files[0];
+
+  if (file) {
+    showPhoto(file);
   }
-);
 
-
-uploadBox.addEventListener(
-  "dragleave",
-  () => {
-
-    uploadBox.style.transform = "";
-
-  }
-);
-
-
-uploadBox.addEventListener(
-  "drop",
-  event => {
-
-    event.preventDefault();
-
-    uploadBox.style.transform = "";
-
-    const file =
-      event.dataTransfer.files[0];
-
-    if (file) showPhoto(file);
-
-  }
-);
-
+});
 
 
 /* =========================
-   DEMO CAPTIONS
+   CAPTION DNA
 ========================= */
 
-const captions = {
+const styles = {
 
   cute: {
+
+    mood: "soft & cheerful",
+    setting: "sunlit / everyday",
+    palette: "pastel + warm",
+    energy: "sweet little moment",
 
     short:
       "the sun really said “look at her” today… and honestly, i can’t even blame it. ☀️🎀",
@@ -198,6 +202,11 @@ const captions = {
 
   dreamy: {
 
+    mood: "dreamy & tender",
+    setting: "quiet / atmospheric",
+    palette: "misty pastel",
+    energy: "ethereal",
+
     short:
       "caught somewhere between a daydream and a little piece of summer. ☁️♡",
 
@@ -211,6 +220,11 @@ const captions = {
 
 
   classy: {
+
+    mood: "elegant & composed",
+    setting: "polished / editorial",
+    palette: "soft neutrals",
+    energy: "graceful",
 
     short:
       "a quiet portrait of elegance, with just enough mischief hidden in the details. ♡",
@@ -226,6 +240,11 @@ const captions = {
 
   playful: {
 
+    mood: "bright & mischievous",
+    setting: "casual / lively",
+    palette: "candy tones",
+    energy: "bouncy",
+
     short:
       "oops… was i supposed to behave for the camera!? 🍒 hehe, too late.",
 
@@ -239,6 +258,11 @@ const captions = {
 
 
   romantic: {
+
+    mood: "warm & affectionate",
+    setting: "soft / intimate",
+    palette: "blush + cream",
+    energy: "tender",
 
     short:
       "a little softness, a little blush, and suddenly the whole day feels romantic. ♡",
@@ -254,6 +278,11 @@ const captions = {
 
   poetic: {
 
+    mood: "lyrical & introspective",
+    setting: "cinematic",
+    palette: "muted glow",
+    energy: "serene",
+
     short:
       "a fleeting frame, caught where daylight meets the quietest corner of my thoughts. ✦",
 
@@ -267,6 +296,11 @@ const captions = {
 
 
   storybook: {
+
+    mood: "whimsical & cinematic",
+    setting: "storybook scene",
+    palette: "fairy-tale pastels",
+    energy: "enchanted",
 
     short:
       "chapter one: she stepped into the sunlight, and the day decided to keep her. ✦",
@@ -282,19 +316,20 @@ const captions = {
 };
 
 
-
 /* =========================
-   DEMO GENERATOR
+   GENERATOR
 ========================= */
 
 function generateDemo() {
 
-  let style =
-    selectedStyle;
+  let style = selectedStyle;
+
+
+  /* SURPRISE MODE */
 
   if (style === "surprise") {
 
-    const styles = [
+    const choices = [
       "cute",
       "dreamy",
       "classy",
@@ -305,176 +340,196 @@ function generateDemo() {
     ];
 
     style =
-      styles[
+      choices[
         Math.floor(
-          Math.random() * styles.length
+          Math.random() * choices.length
         )
       ];
 
   }
 
 
-  const result =
-    captions[style][selectedLength];
+  const data = styles[style];
+
+
+  /* reading */
+
+  readMood.textContent =
+    data.mood;
+
+  readSetting.textContent =
+    data.setting;
+
+  readPalette.textContent =
+    data.palette;
+
+  readEnergy.textContent =
+    data.energy;
+
+
+  /* caption */
+
+  let result =
+    data[selectedLength];
+
+
+  /* optional context */
+
+  const extra =
+    context.value.trim();
+
+
+  if (extra) {
+
+    result +=
+      ` ♡ ${extra}.`;
+
+  }
 
 
   caption.textContent =
     result;
 
-
-  const readings = {
-
-    cute: [
-      "soft & cheerful",
-      "sunlit / everyday",
-      "pastel + warm",
-      "sweet little moment"
-    ],
-
-    dreamy: [
-      "dreamy & tender",
-      "quiet / atmospheric",
-      "misty pastel",
-      "ethereal"
-    ],
-
-    classy: [
-      "elegant & composed",
-      "polished / editorial",
-      "soft neutrals",
-      "graceful"
-    ],
-
-    playful: [
-      "bright & mischievous",
-      "casual / lively",
-      "candy tones",
-      "bouncy"
-    ],
-
-    romantic: [
-      "warm & affectionate",
-      "soft / intimate",
-      "blush + cream",
-      "tender"
-    ],
-
-    poetic: [
-      "lyrical & introspective",
-      "cinematic",
-      "muted glow",
-      "serene"
-    ],
-
-    storybook: [
-      "whimsical & cinematic",
-      "storybook scene",
-      "fairy-tale pastels",
-      "enchanted"
-    ]
-
-  };
+}
 
 
-  const data =
-    readings[style];
+/* =========================
+   GENERATE BUTTON
+========================= */
+
+async function generateCaption() {
+
+  if (!currentPhoto) {
+
+    alert(
+      "give me a picture first, darling ♡"
+    );
+
+    return;
+
+  }
 
 
-  mood.textContent = data[0];
-  setting.textContent = data[1];
-  palette.textContent = data[2];
-  energy.textContent = data[3];
+  generateButton.disabled = true;
+
+  generateButton.innerHTML =
+    "✦ reading your picture…";
+
+
+  /*
+    ============================
+    AI VISION WILL GO HERE
+    ============================
+
+    Untuk sekarang generator
+    masih menggunakan demo data.
+
+    NANTI:
+
+    image
+       ↓
+    vision AI
+       ↓
+    image description
+       ↓
+    caption DNA
+       ↓
+    final caption
+
+  */
+
+
+  setTimeout(() => {
+
+    generateDemo();
+
+
+    generateButton.disabled = false;
+
+    generateButton.innerHTML =
+      '<span>✦</span> make it pretty <span>♡</span>';
+
+  }, 850);
 
 }
 
 
-
 /* =========================
-   GENERATE
+   BUTTON EVENTS
 ========================= */
 
 generateButton.addEventListener(
   "click",
-  () => {
-
-    if (!currentPhoto) {
-
-      alert(
-        "Give me a photo first, darling ♡"
-      );
-
-      return;
-
-    }
-
-    generateButton.disabled = true;
-
-    generateButton.textContent =
-      "✦ reading your photo…";
-
-
-    setTimeout(() => {
-
-      generateDemo();
-
-      generateButton.disabled = false;
-
-      generateButton.textContent =
-        "✦ READ PHOTO & GENERATE ✦";
-
-    }, 900);
-
-  }
+  generateCaption
 );
 
-
-
-/* =========================
-   REGENERATE
-========================= */
 
 regenerate.addEventListener(
   "click",
-  () => {
-
-    if (!currentPhoto) {
-
-      alert(
-        "Upload a photo first ♡"
-      );
-
-      return;
-
-    }
-
-    generateDemo();
-
-  }
+  generateCaption
 );
-
 
 
 /* =========================
-   COPY
+   COPY CAPTION
 ========================= */
 
-copyButton.addEventListener(
+copyCaption.addEventListener(
   "click",
   async () => {
 
-    await navigator.clipboard.writeText(
-      caption.textContent
-    );
+    const text =
+      caption.textContent.trim();
 
-    copyButton.textContent =
-      "✓ copied";
 
-    setTimeout(() => {
+    if (!text) return;
 
-      copyButton.textContent =
-        "♡ copy";
 
-    }, 1200);
+    try {
+
+      await navigator.clipboard.writeText(text);
+
+
+      copyCaption.textContent =
+        "✓ copied";
+
+
+      setTimeout(() => {
+
+        copyCaption.textContent =
+          "♡ copy";
+
+      }, 1200);
+
+
+    } catch {
+
+      alert(
+        "Couldn’t copy automatically—please select the caption ♡"
+      );
+
+    }
 
   }
 );
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetReading() {
+
+  readMood.textContent =
+    "waiting...";
+
+  readSetting.textContent =
+    "—";
+
+  readPalette.textContent =
+    "—";
+
+  readEnergy.textContent =
+    "—";
+
+}

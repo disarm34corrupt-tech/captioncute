@@ -1,291 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd8e8">
 
-  <title>Caption Dreamy ♡</title>
+  <title>captioncute ♡</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
     rel="stylesheet"
-  />
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="floating floating-one">✦</div>
-  <div class="floating floating-two">♡</div>
-  <div class="floating floating-three">✧</div>
+  <!-- floating decorations -->
+  <div class="sky-decor decor-1">✦</div>
+  <div class="sky-decor decor-2">♡</div>
+  <div class="sky-decor decor-3">✧</div>
 
-  <header class="header">
-    <div>
-      <p class="eyebrow">✦ A LITTLE CAPTION ATELIER</p>
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="brand-mini">
+        ✦ a tiny caption atelier
+      </div>
 
       <h1>
-        Caption
-        <span>Dreamy</span>
+        caption<span>cute</span> ♡
       </h1>
+
+      <p>
+        pretty words for pretty little moments.
+      </p>
+
     </div>
 
-    <p class="intro">
-      Upload a picture, let the little studio read its mood,
-      then turn the moment into words ♡
-    </p>
+
+    <div class="top-note">
+
+      <span>made for</span>
+
+      <strong>
+        RP girls with too many pictures
+      </strong>
+
+    </div>
+
   </header>
 
 
-  <main class="container">
 
-    <!-- LEFT -->
-    <section class="card creator">
-
-      <h2>Give me a picture ♡</h2>
-
-      <p class="description">
-        The photo becomes the starting point —
-        not the whole personality.
-      </p>
+  <main class="page">
 
 
-      <!-- UPLOAD -->
+    <!-- ================= HERO ================= -->
 
-      <label class="upload-box" id="uploadBox">
+    <section class="hero">
 
-        <input
-          type="file"
-          id="photoInput"
-          accept="image/*"
-        />
+      <div class="hero-copy">
 
-        <div id="uploadText">
+        <span class="kicker">
+          PHOTO → MOOD → WORDS
+        </span>
 
-          <div class="upload-icon">
-            ☁️
-          </div>
+        <h2>
+          Give me a picture,<br>
+          <em>I'll give it a voice.</em>
+        </h2>
 
-          <strong>
-            drop your photo here
-          </strong>
-
-          <span>
-            or tap to browse · JPG / PNG / WEBP
-          </span>
-
-        </div>
-
-        <img
-          id="preview"
-          class="preview"
-          alt="Photo preview"
-        />
-
-      </label>
-
-
-      <!-- STYLE -->
-
-      <div class="section">
-
-        <div class="label">
-          Caption mood
-        </div>
-
-        <div class="style-list">
-
-          <button class="style active" data-style="cute">
-            🎀 Cute
-          </button>
-
-          <button class="style" data-style="dreamy">
-            ☁️ Dreamy
-          </button>
-
-          <button class="style" data-style="classy">
-            🦢 Classy
-          </button>
-
-          <button class="style" data-style="playful">
-            🍒 Playful
-          </button>
-
-          <button class="style" data-style="romantic">
-            💌 Romantic
-          </button>
-
-          <button class="style" data-style="poetic">
-            📖 Poetic
-          </button>
-
-          <button class="style" data-style="storybook">
-            🕯️ Storybook
-          </button>
-
-          <button class="style" data-style="surprise">
-            ✦ Surprise Me
-          </button>
-
-        </div>
+        <p>
+          Upload a photo and choose the little mood you want.
+          This atelier turns the visual moment into an aesthetic,
+          character-driven caption.
+        </p>
 
       </div>
 
 
-      <!-- LENGTH -->
+      <div class="hero-sticker">
 
-      <div class="section">
+        <span>♡</span>
 
-        <div class="label">
-          Caption length
-        </div>
-
-        <div class="length-list">
-
-          <button class="length active" data-length="short">
-            Short
-          </button>
-
-          <button class="length" data-length="medium">
-            Medium
-          </button>
-
-          <button class="length" data-length="long">
-            Long
-          </button>
-
-        </div>
+        <small>
+          soft words<br>
+          inside
+        </small>
 
       </div>
-
-
-      <!-- CONTEXT -->
-
-      <div class="section">
-
-        <div class="label">
-          Tiny context
-          <small>(optional)</small>
-        </div>
-
-        <textarea
-          id="context"
-          placeholder="e.g. afternoon coffee with my bestie, first day in Seoul, concert night..."
-        ></textarea>
-
-      </div>
-
-
-      <button
-        class="generate-button"
-        id="generateButton"
-      >
-        ✦ READ PHOTO & GENERATE ✦
-      </button>
 
     </section>
 
 
 
-    <!-- RIGHT -->
+    <!-- ================= WORKSPACE ================= -->
 
-    <section class="card result">
+    <section class="workspace">
 
-      <div class="result-header">
 
-        <div>
-          <h2>
-            What the photo whispers
-          </h2>
+      <!-- ================= LEFT PANEL ================= -->
 
-          <p class="description">
-            visual reading + caption
-          </p>
+      <div class="panel create-panel">
+
+
+        <!-- PHOTO -->
+
+        <div class="panel-heading">
+
+          <div>
+
+            <span class="section-number">
+              01
+            </span>
+
+            <h3>
+              bring your photo
+            </h3>
+
+          </div>
+
+          <span class="tiny-spark">
+            ✦
+          </span>
+
         </div>
 
-        <span class="status">
-          demo mode
+
+        <label class="upload" id="uploadBox">
+
+          <input
+            id="photoInput"
+            type="file"
+            accept="image/*"
+          >
+
+
+          <!-- empty state -->
+
+          <div
+            class="upload-empty"
+            id="uploadEmpty"
+          >
+
+            <div class="upload-cloud">
+              ☁️
+            </div>
+
+            <strong>
+              drop your picture here
+            </strong>
+
+            <span>
+              or tap to choose from your gallery
+            </span>
+
+            <small>
+              JPG · PNG · WEBP
+            </small>
+
+          </div>
+
+
+          <!-- image preview -->
+
+          <div
+            class="preview-wrap"
+            id="previewWrap"
+          >
+
+            <img
+              id="preview"
+              alt="Uploaded photo"
+            >
+
+            <button
+              class="remove-photo"
+              id="removePhoto"
+              type="button"
+            >
+              ×
+            </button>
+
+          </div>
+
+        </label>
+
+
+
+        <!-- ================= MOOD ================= -->
+
+        <div class="control-group">
+
+          <div class="control-title">
+
+            <span>
+              02
+            </span>
+
+            <h3>
+              choose your mood
+            </h3>
+
+          </div>
+
+
+          <div
+            class="moods"
+            id="moods"
+          >
+
+            <button
+              class="mood active"
+              data-style="cute"
+            >
+              🎀 <span>Cute</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="dreamy"
+            >
+              ☁️ <span>Dreamy</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="classy"
+            >
+              🦢 <span>Classy</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="playful"
+            >
+              🍒 <span>Playful</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="romantic"
+            >
+              💌 <span>Romantic</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="poetic"
+            >
+              📖 <span>Poetic</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="storybook"
+            >
+              🕯️ <span>Storybook</span>
+            </button>
+
+
+            <button
+              class="mood"
+              data-style="surprise"
+            >
+              ✦ <span>Surprise</span>
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ================= LENGTH ================= -->
+
+        <div class="control-group">
+
+          <div class="control-title">
+
+            <span>
+              03
+            </span>
+
+            <h3>
+              how much should it say?
+            </h3>
+
+          </div>
+
+
+          <div
+            class="lengths"
+            id="lengths"
+          >
+
+            <button
+              class="length active"
+              data-length="short"
+            >
+
+              <b>
+                SHORT
+              </b>
+
+              <small>
+                a little thought
+              </small>
+
+            </button>
+
+
+            <button
+              class="length"
+              data-length="medium"
+            >
+
+              <b>
+                MEDIUM
+              </b>
+
+              <small>
+                just enough story
+              </small>
+
+            </button>
+
+
+            <button
+              class="length"
+              data-length="long"
+            >
+
+              <b>
+                LONG
+              </b>
+
+              <small>
+                let her ramble
+              </small>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ================= CONTEXT ================= -->
+
+        <div class="control-group">
+
+          <div class="control-title">
+
+            <span>
+              04
+            </span>
+
+            <h3>
+              tiny context
+              <small>
+                optional
+              </small>
+            </h3>
+
+          </div>
+
+
+          <textarea
+            id="context"
+            placeholder="concert night, coffee with my bestie, first day in Seoul..."
+          ></textarea>
+
+        </div>
+
+
+
+        <!-- ================= GENERATE ================= -->
+
+        <button
+          class="magic-button"
+          id="generateButton"
+        >
+
+          <span>
+            ✦
+          </span>
+
+          make it pretty
+
+          <span>
+            ♡
+          </span>
+
+        </button>
+
+      </div>
+
+
+
+      <!-- ================= RIGHT PANEL ================= -->
+
+      <div class="panel result-panel">
+
+
+        <div class="result-top">
+
+          <div>
+
+            <span class="section-number">
+              05
+            </span>
+
+            <h3>
+              the little reading
+            </h3>
+
+            <p>
+              what the picture whispers before it becomes words.
+            </p>
+
+          </div>
+
+
+          <span
+            class="mode-pill"
+            id="modePill"
+          >
+            demo atelier
+          </span>
+
+        </div>
+
+
+
+        <!-- ================= IMAGE READING ================= -->
+
+        <div class="reading-grid">
+
+
+          <div class="reading-card">
+
+            <span>
+              MOOD
+            </span>
+
+            <strong id="readMood">
+              waiting...
+            </strong>
+
+          </div>
+
+
+          <div class="reading-card">
+
+            <span>
+              SETTING
+            </span>
+
+            <strong id="readSetting">
+              —
+            </strong>
+
+          </div>
+
+
+          <div class="reading-card">
+
+            <span>
+              PALETTE
+            </span>
+
+            <strong id="readPalette">
+              —
+            </strong>
+
+          </div>
+
+
+          <div class="reading-card">
+
+            <span>
+              ENERGY
+            </span>
+
+            <strong id="readEnergy">
+              —
+            </strong>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ================= CAPTION ================= -->
+
+        <div class="caption-result">
+
+          <div class="result-label">
+            ♡ YOUR CAPTION
+          </div>
+
+
+          <div
+            class="caption-text"
+            id="caption"
+          >
+            upload a photo and let the little atelier begin.
+          </div>
+
+
+          <div class="result-actions">
+
+            <button id="regenerate">
+              ↻ another one
+            </button>
+
+            <button id="copyCaption">
+              ♡ copy
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ================= FUTURE AI NOTE ================= -->
+
+        <div class="future-note">
+
+          <span>
+            ☁️
+          </span>
+
+          <p>
+
+            <b>
+              next little upgrade:
+            </b>
+
+            real photo reading +
+            persona-aware caption generation.
+            The interface is ready
+            for the AI layer.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= PHILOSOPHY ================= -->
+
+    <section class="dna-strip">
+
+      <div>
+
+        <span>
+          captioncute philosophy
+        </span>
+
+        <strong>
+          not just describing the picture —
+          giving the picture a personality.
+        </strong>
+
+      </div>
+
+
+      <div class="dna-tags">
+
+        <span>
+          lowercase
+        </span>
+
+        <span>
+          little quirks
+        </span>
+
+        <span>
+          soft metaphors
+        </span>
+
+        <span>
+          RP energy
+        </span>
+
+        <span>
+          ♡
         </span>
 
       </div>
-
-
-      <!-- VISUAL READING -->
-
-      <div class="reading">
-
-        <div>
-          <span>MOOD</span>
-          <strong id="mood">
-            waiting for a photo...
-          </strong>
-        </div>
-
-        <div>
-          <span>SETTING</span>
-          <strong id="setting">
-            —
-          </strong>
-        </div>
-
-        <div>
-          <span>PALETTE</span>
-          <strong id="palette">
-            —
-          </strong>
-        </div>
-
-        <div>
-          <span>ENERGY</span>
-          <strong id="energy">
-            —
-          </strong>
-        </div>
-
-      </div>
-
-
-      <!-- CAPTION -->
-
-      <div class="caption-box">
-
-        <div class="caption-label">
-          YOUR CAPTION ♡
-        </div>
-
-        <p id="caption">
-          Give me a photo and I'll make it sing.
-        </p>
-
-
-        <div class="actions">
-
-          <button id="regenerate">
-            ↻ regenerate
-          </button>
-
-          <button id="copy">
-            ♡ copy
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <p class="studio-note">
-        <b>Studio note:</b>
-        this little atelier is learning your visual language.
-        More persona styles will be added soon. ☁️
-      </p>
 
     </section>
 
   </main>
 
 
+
+  <!-- ================= FOOTER ================= -->
+
   <footer>
+
     made with sugar, stardust & too many little hearts ♡
+
   </footer>
+
 
 
   <script src="script.js"></script>
